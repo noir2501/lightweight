@@ -1,0 +1,9 @@
+﻿<textarea name="content" data-iconlibrary="fa"></textarea>
+
+@using (var context = Html.BeginScriptContext())
+{
+    context.AddScriptFile("~/Scripts/markdown/markdown.min.js");
+    context.AddScriptFile("~/Scripts/markdown/bootstrap-markdown.min.js");
+    context.AddScriptFile("~/Scripts/markdown/bootbox.min.js");
+    context.AddScriptFile("~/Scripts/jquery.hotkeys.js");
+}

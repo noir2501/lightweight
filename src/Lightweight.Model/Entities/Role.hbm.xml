@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Lightweight.Model.Entities" assembly="Lightweight.Model" auto-import="false">
+
+  <class name="Role" table="Role">
+
+    <id name="Id" column="RoleUID">
+      <generator class="guid"></generator>
+    </id>
+
+    <property name="Name"/>
+    <property name="Icon"/>
+
+    <many-to-one name="Tenant" column="TenantUID" />
+
+    <bag name="Users" table="UserRole" inverse="true" cascade ="none">
+      <key column="RoleUID" />
+      <many-to-many column="UserUID" class="User"/>
+    </bag>
+    
+  </class>
+
+</hibernate-mapping>

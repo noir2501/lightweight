@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Lightweight</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+
+    <!-- page specific plugin styles -->
+    <!-- text fonts -->
+    <link rel="stylesheet" href="~/Content/ace-fonts.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="~/Content/ace.min.css" id="main-ace-style" />
+    <link rel="stylesheet" href="~/Content/ace.custom.css" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="~/Content/ace-part2.min.css" />
+    <![endif]-->
+    <link rel="stylesheet" href="~/Content/ace-skins.min.css" />
+    <link rel="stylesheet" href="~/Content/ace-rtl.min.css" />
+
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="~/Content/ace-ie.min.css" />
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="~/Scripts/html5shiv.min.js"></script>
+    <script src="~/Scripts/respond.min.js"></script>
+    <![endif]-->
+    <!-- page css -->
+    @RenderSection("css", false)
+
+    <!-- customizations -->
+    <link rel="stylesheet" href="~/Content/customizations.css">
+</head>
+
+<body class="no-skin">
+
+    @Html.Partial("_Header")
+
+    <!-- /section:basics/navbar.layout -->
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+            try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+        </script>
+
+        @Html.Partial("_Sidebar")
+
+        <div class="main-content">
+            @if (User.Identity.IsAuthenticated)
+            {
+            <!-- #section:basics/content.breadcrumbs -->
+                <div class="breadcrumbs" id="breadcrumbs">
+
+                    @*@Html.Partial("_Breadcrumb")*@
+                    <!-- /.breadcrumb -->
+                    <!-- #section:basics/content.searchbox -->
+                    @Html.Partial("_Search")
+                    <!-- /section:basics/content.searchbox -->
+                </div>
+            }
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                <!-- THEME SETTINGS -->
+                @*@Html.Partial("_Settings")*@
+
+                <div class="page-content-area">
+                    <div class="page-header">
+                        @Html.Partial("_Title")
+                        @RenderSection("pageheader", false)
+                    </div><!-- /.page-header -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <div class="ajax-message">
+                            </div>
+                            @if (TempData["Alert"] != null)
+                            {
+                                @Html.Partial("_Alert", TempData["Alert"])
+                            }
+
+                            @RenderBody()
+                            @* <div class="hr hr32 hr-dotted"></div>*@
+                            <!-- PAGE CONTENT ENDS -->
+
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+
+                </div><!-- /.page-content-area -->
+
+            </div><!-- /.page-content -->
+
+        </div><!-- /.main-content -->
+        @Html.Partial("_Footer")
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+      <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if ('ontouchstart' in document.documentElement) document.write("<script src='../../scripts/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+    <!--[if lte IE 8]>
+      <script src="~/Scripts/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/jquery-ui.custom.min.js"></script>
+    <script src="~/Scripts/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- ace scripts -->
+    <script src="~/Scripts/ace/ace.min.js"></script>
+    <script src="~/Scripts/ace/ace-elements.min.js"></script>
+    <!-- ace settings handler -->
+    @*<script src="~/Scripts/ace/ace-extra.js"></script>*@
+
+    <!-- enable tooltips and popovers -->
+    <script type="text/javascript">
+        $('[data-rel=tooltip]').tooltip({ container: 'body' });
+        $('[data-rel=popover]').popover({ container: 'body' });
+    </script>
+
+    <!-- validation scripts -->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+    @Html.RenderScripts()
+
+    <!-- lightweight scripts -->
+    <script src="~/Scripts/lightweight/utils.js"></script>
+</body>
+</html>

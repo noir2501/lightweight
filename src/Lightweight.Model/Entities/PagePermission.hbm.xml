@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Lightweight.Model.Entities" assembly="Lightweight.Model" auto-import="false">
+
+  <class name="PagePermission" table="PagePermission">
+
+    <id name="Id" column="PagePermissionUID">
+      <generator class="guid"></generator>
+    </id>
+
+    <property name="View" column="[View]" />
+    <property name="Edit" />
+    <property name="Delete" column="[Delete]" />
+
+    <many-to-one name="Role" column="RoleUID" />
+    <many-to-one name="Page" column="PageUID" />
+
+  </class>
+
+</hibernate-mapping>

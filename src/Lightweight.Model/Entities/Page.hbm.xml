@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Lightweight.Model.Entities" assembly="Lightweight.Model" auto-import="false">
+
+  <class name="Page" table="Page">
+
+    <id name="Id" column="PageUID">
+      <generator class="guid"></generator>
+    </id>
+
+    <property name="Name" />
+    <property name="Title" />
+    <property name="Slug" />
+    <property name="Url" />
+    <property name="IconUrl" />
+    <property name="Order" column="[Order]" />
+    <property name="Published"/>
+    <property name="MenuOnly" />
+
+    <many-to-one name="Tenant" column="TenantUID" />
+    <many-to-one name="Parent" column="ParentPageUID" />
+
+    <set name="Permissions" cascade="none" inverse="true">
+      <key column="PageUID" />
+      <one-to-many class="PagePermission" />
+    </set>
+
+    <set name="Widgets" cascade="none" inverse="true">
+      <key column="PageUID" />
+      <one-to-many class="PageWidget" />
+    </set>
+
+  </class>
+
+</hibernate-mapping>

@@ -1,0 +1,152 @@
+﻿@model Lightweight.Web.Models.UserProfileModel
+
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.SubTitle = string.Format("{0} {1}", @Model.FirstName, @Model.LastName);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css {
+    <link rel="stylesheet" href="~/Content/bootstrap-editable.css">
+}
+
+<div>
+    <div class="user-profile row">
+        <div class="col-xs-12 col-sm-3 center">
+            <div>
+                <!-- #section:pages/profile.picture -->
+                <span class="profile-picture">
+                    <img id="avatar" class="editable img-responsive" alt="Avatar" src="@Model.Photo" />
+                </span>
+
+                <!-- /section:pages/profile.picture -->
+                <div class="space-4"></div>
+
+                <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                    <div class="inline position-relative">
+                        <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                            <i class="ace-icon fa fa-circle light-green"></i>
+                            &nbsp;
+                            <span class="white">@Model.FirstName &nbsp; @Model.LastName</span>
+                        </a>
+
+                        <ul class="align-left dropdown-menu dropdown-caret dropdown-lighter">
+                            <li class="dropdown-header"> Change Status </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-circle green"></i>
+                                    &nbsp;
+                                    <span class="green">Available</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-circle red"></i>
+                                    &nbsp;
+                                    <span class="red">Busy</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-circle grey"></i>
+                                    &nbsp;
+                                    <span class="grey">Invisible</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-6"></div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-9">
+            <span class="editable" id=""></span>
+
+            <!-- #section:pages/profile.info -->
+            <div class="profile-user-info profile-user-info-striped">
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Username </div>
+                    <div class="profile-info-value">
+                        <span>@Model.UserName</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Email </div>
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="email">@Model.Email</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Name </div>
+
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="firstname">@Model.FirstName</span>
+                        <span class="editable editable-click" id="lastname">@Model.LastName</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Location </div>
+                    <div class="profile-info-value">
+                        <i class="fa fa-map-marker light-orange bigger-110"></i>
+                        <span class="editable editable-click" id="country">@Model.Country</span>
+                        <span class="editable editable-click" id="city">@Model.City</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Zip </div>
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="zip">@Model.Zip</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> Address </div>
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="address">@Model.Address</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"> About Me </div>
+                    <div class="profile-info-value">
+                        <span class="editable editable-click" id="description">@Model.Description</span>
+                    </div>
+                </div>
+
+                <div class="profile-info-row">
+                    <div class="profile-info-name"></div>
+                    <div class="profile-info-value">
+                        <button type="button" class="btn btn-sm btn-primary btn-white btn-round" id="update-profile">
+                            <i class="ace-icon fa fa-save bigger-150 blue middle "></i>
+                            <span>Update profile</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- /section:pages/profile.info -->
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/bootstrap-editable.min.js"></script>
+    <script src="~/Scripts/lightweight/editable.js"></script>
+    <script type="text/javascript">
+        var updateProfileUrl = '@Url.Content("~/users/updateprofile")';
+        var updateProfileKey = '@Model.Id';
+    </script>
+    <script src="~/Scripts/lightweight/profile.js"></script>
+}

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Lightweight.Model.Entities" assembly="Lightweight.Model" auto-import="false">
+
+  <class name="PageWidget" table="PageWidget">
+
+    <id name="Id" column="PageWidgetUID">
+      <generator class="guid"></generator>
+    </id>
+
+    <property name="Title" />
+
+    <property name="Col" />
+    <property name="Row" />
+    <property name="Width" />
+    <property name="Height" />
+
+    <property name="Content" column="[Content]" />
+
+    <many-to-one name="Page" column="PageUID" />
+    <many-to-one name="Module" column="ModuleUID" />
+
+  </class>
+
+</hibernate-mapping>

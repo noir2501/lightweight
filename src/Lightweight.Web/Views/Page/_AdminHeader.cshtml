@@ -1,0 +1,22 @@
+﻿@model Lightweight.Web.Models.PageModel
+@if (@Model.Mode != Lightweight.Web.Models.PageMode.Create)
+{
+   <br/>
+        <div class="pull-right">
+            <ul class="nav nav-tabs">
+                <li class="@(Model.Mode == Lightweight.Web.Models.PageMode.Render ? "active" : "")">
+                    <a href="~/page/@Model.Slug">Render</a>
+                </li>
+                <li class="@(Model.Mode == Lightweight.Web.Models.PageMode.Edit ? "active" : "")">
+                    <a href="~/page/@Model.Slug/edit">Edit</a>
+                </li>
+                <li class="@(Model.Mode == Lightweight.Web.Models.PageMode.Layout ? "active" : "")">
+                    <a href="~/page/@Model.Slug/layout">Layout</a>
+                </li>
+                <li>
+                    <a href="~/page/@Model.Slug/remove" class="btn btn-warning" onclick="return confirm('Are you sure you want to remove this page?');">Remove</a>
+                </li>
+            </ul>
+        </div>
+    <br/>
+}

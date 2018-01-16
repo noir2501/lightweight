@@ -1,0 +1,53 @@
+﻿@using Lightweight.Web.Models
+@helper RenderNavigation(List<PageModel> pages, string selected, string[] roles, System.Web.Mvc.UrlHelper Url)
+{
+    <ul class="nav nav-list">
+        @{
+            foreach (var page in pages.Where(i => i.ParentId == null).OrderBy(i => i.Order))
+            {
+                if (page.Published || roles.Contains("Administrator"))
+                {
+                    @RenderNavigationItem(pages, page, selected, roles, Url)
+                }
+            }
+        }
+    </ul>
+}
+
+@helper RenderNavigationItem(List<PageModel> pages, PageModel page, string selected, string[] roles, System.Web.Mvc.UrlHelper Url)
+{
+
+    var children = pages.Where(si => si.ParentId == page.Id).OrderBy(si => si.Order).ToList();
+    var activeclass = page.Slug == selected ? "active" : string.Empty;
+    <li class="@activeclass">
+        @{
+            var itemUrl = string.IsNullOrEmpty(page.Url) ? string.IsNullOrEmpty(page.Slug) ? "#" : Url.Content("~/page/" + page.Slug) : Url.Content(page.Url);
+        }
+
+        @if (!children.Any()) // single item
+        {
+            <a href="@itemUrl">
+                <i class="@(!page.ParentId.HasValue? "menu-icon":"") fa @page.IconUrl"></i>
+                <span class="menu-text">@page.Name</span>
+            </a>
+        }
+        else // drop down
+        {
+            <a href="@itemUrl" class="dropdown-toggle">
+                <i class="@(!page.ParentId.HasValue? "menu-icon":"") fa @page.IconUrl"></i>
+                <span class="menu-text">@page.Name</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <ul class="submenu">
+                @foreach (var child in children)
+                {
+                    if (child.Published || roles.Contains("Administrator"))
+                    {
+                        @RenderNavigationItem(pages, child, selected, roles, Url)
+                    }
+                }
+            </ul>
+        }
+    </li>
+}

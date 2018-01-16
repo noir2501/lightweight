@@ -1,0 +1,28 @@
+﻿@model Lightweight.Web.Models.PageWidgetModel
+@{
+
+    var width = Model.Width * 4;
+    var height = Model.Height * 178;
+}
+<div class="col-sm-@width widget-container-col" style="min-height: @(height)px; max-height: @(height)px; overflow:hidden">
+    <!-- widget start -->
+    <div class="widget-box transparent" style="opacity: 1; z-index: 2;">
+        <div class="widget-header">
+            <h4 class="widget-title lighter">@Model.Title</h4>
+
+            <div class="widget-toolbar no-border">
+                <a href="#" data-action="fullscreen">
+                    <i class="ace-icon fa fa-expand grey"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="widget-body" style="display: block;">
+            <div class="widget-main padding-6 no-padding-left no-padding-right scrollable" data-size="@(height)">
+                @Html.Raw(Model.ContentHtml)
+            </div>
+        </div>
+    </div>
+    <!-- widget end -->
+</div>
+

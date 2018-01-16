@@ -1,0 +1,97 @@
+﻿@model Lightweight.Web.Models.PageModel
+
+@using (Html.BeginForm("save", "page", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.ParentId)
+    <div class="form-group">
+        <label class="col-sm-2 control-label no-padding-right">Name</label>
+        <div class="col-sm-9">
+            <span data-rel="popover" data-trigger="hover" data-placement="top" data-content="This will be shown in the navigation." title="" data-original-title="Page name">
+                @Html.TextBoxFor(m => m.Name, new { @class = "" })
+            </span>
+            Icon
+            <span class="input-icon input-icon-right" data-rel="popover" data-trigger="hover" data-placement="top" data-content="Pick from a list of predefined icons." title="" data-original-title="Page icon">
+                @Html.TextBoxFor(m => m.IconUrl, new { @class = "input-medium" })
+                <i class="ace-icon fa @Model.IconUrl blue"></i>
+            </span>
+            Order
+            <span data-rel="popover" data-trigger="hover" data-placement="top" data-content="Determins the display order in the navigation." title="" data-original-title="Page order">
+                @Html.TextBoxFor(m => m.Order, new { @class = "input-mini" })
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label no-padding-right"> Title </label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(m => m.Title, new { @class = "col-xs-10 col-sm-6" })
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    @*<div class="form-group">
+            <label class="col-sm-2 control-label no-padding-right"> Url </label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(m => m.Url, new { @class = "col-xs-10 col-sm-6" })
+            </div>
+        </div>*@
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label no-padding-right">         Url fragment </label>
+        <div class="col-sm-9" data-rel="popover" data-trigger="hover" data-placement="left" data-content="Unique page identifier." title="" data-original-title="Page slug">
+            @Html.TextBoxFor(m => m.Slug, new { @class = "col-xs-10 col-sm-6" })
+        </div>
+    </div>
+
+    <div class="space-4"></div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label no-padding-right"> Settings </label>
+        <div class="col-sm-9">
+            <label class="middle col-xs-2" data-rel="popover" data-trigger="hover" data-placement="left" data-content="If checked, this page will have no content and will be used only as menu item." title="" data-original-title="Menu only">
+                @Html.CheckBoxFor(m => m.MenuOnly, new { @class = "ace" })
+                <span class="lbl"> menu only</span>
+            </label>
+            <label class="middle" data-rel="popover" data-trigger="hover" data-placement="right" data-content="If unchecked, this page will be visible only to administrators." title="" data-original-title="Published">
+                @Html.CheckBoxFor(m => m.Published, new { @class = "ace" })
+                <span class="lbl"> published</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label no-padding-right">Visible to</label>
+        <div class="col-sm-9">
+            <label class="middle col-sm-2">
+                @Html.CheckBoxFor(m => m.MembersVisible, new { @class = "ace" })
+                <span class="lbl"> members</span>
+            </label>
+            <label class="middle">
+                @Html.CheckBoxFor(m => m.GuestsVisible, new { @class = "ace" })
+                <span class="lbl"> guests </span>
+            </label>
+        </div>
+    </div>
+
+
+    <div class="space-4"></div>
+
+    <div class="clearfix form-actions">
+        <div class="col-md-9">
+            <button class="btn btn-info" type="submit">
+                <i class="ace-icon fa fa-check bigger-110"></i>
+                Save page
+            </button>
+        </div>
+    </div>
+}
+
+@using (var context = Html.BeginScriptContext())
+{
+    context.AddScriptFile("~/scripts/lightweight/page/page-edit.js");
+}

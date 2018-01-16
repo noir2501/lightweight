@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Lightweight.Model.Entities" assembly="Lightweight.Model" auto-import="false">
+
+  <class name="UserProfile" table="UserProfile">
+
+    <id name="Id" column="UserUID">
+      <generator class="foreign">
+        <param name="property">
+          User
+        </param>
+      </generator>
+    </id>
+
+    <property name="FirstName"/>
+    <property name="LastName" />
+    <property name="Email" />
+
+    <property name="Address" />
+    <property name="State" />
+    <property name="City" />
+    <property name="Zip" />
+    <property name="Country" />
+    <property name="Phone" />
+    <property name="Mobile" />
+    <property name="Photo" />
+    <property name="Description" />
+
+    <property name="LastUpdated" />
+
+    <one-to-one name="User" constrained="true" foreign-key="none" class="User"/>
+
+  </class>
+
+</hibernate-mapping>

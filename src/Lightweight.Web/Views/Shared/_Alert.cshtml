@@ -1,0 +1,7 @@
+﻿@model Lightweight.Web.Models.AlertModel
+
+<div class="alert alert-@Model.Type alert-block">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <h4 class="alert-heading">@Model.Title</h4>
+    @Model.Message
+</div>

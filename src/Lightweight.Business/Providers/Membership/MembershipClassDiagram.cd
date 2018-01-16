@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lightweight.Business.Providers.Membership.MultiTenantMembershipProvider">
+    <Position X="0.75" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQQACEAoAYAEgUiMGcAEAgBQGwIAAA6CHCEAAImQAAQ=</HashCode>
+      <FileName>Providers\Membership\MultiTenantMembershipProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lightweight.Business.Providers.Membership.MultiTenantRoleProvider">
+    <Position X="3.75" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAAEEAAwAAAEAQAAAEAABAAAAAAAAAYAAAAEAAEQAAA=</HashCode>
+      <FileName>Providers\Membership\MultiTenantRoleProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lightweight.Business.Providers.Membership.MultiTenantProfileProvider">
+    <Position X="6" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>oAAAASAAAAAEAQAAAEAAEoQAAAAIAAQAAAAAAAEAAAA=</HashCode>
+      <FileName>Providers\Membership\MultiTenantProfileProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

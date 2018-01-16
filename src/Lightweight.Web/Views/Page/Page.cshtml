@@ -1,0 +1,39 @@
+﻿@model Lightweight.Web.Models.PageModel
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.SubTitle = Model.Mode;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section css {
+    @if (Model.Mode == Lightweight.Web.Models.PageMode.Layout)
+    {
+        <!-- include gridster css if page is in layout mode -->
+        <link rel="stylesheet" href="~/Content/jquery.gridster.min.css" />
+        <link rel="stylesheet" href="~/Content/bootstrap-editable.css" />
+    }
+}
+
+@section pageheader {
+    @if (User.IsInRole("Administrator"))
+    {
+        @Html.Partial("_AdminHeader", Model)
+    }
+}
+
+@{
+    switch (Model.Mode)
+    {
+        case Lightweight.Web.Models.PageMode.Render:
+            @Html.Partial("_Render", Model);
+            break;
+        case Lightweight.Web.Models.PageMode.Create:
+        case Lightweight.Web.Models.PageMode.Edit:
+            @Html.Partial("_Edit", Model);
+            break;
+        case Lightweight.Web.Models.PageMode.Layout:
+            @Html.Partial("_Layout", Model);
+            break;
+    }
+}

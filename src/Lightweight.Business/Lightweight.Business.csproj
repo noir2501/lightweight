@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B372F10-0C5F-4E66-9D81-9583BFEF68E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lightweight.Business</RootNamespace>
+    <AssemblyName>Lightweight.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HibernatingRhinos.Profiler.Appender, Version=3.0.0.0, Culture=neutral, PublicKeyToken=0774796e73ebf640, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernateProfiler.Appender.3.0.3065.0\lib\HibernatingRhinos.Profiler.Appender.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Exceptions\BusinessExceptionType.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\NamingConventionHelper.cs" />
+    <Compile Include="Helpers\ReflectionHelper.cs" />
+    <Compile Include="Helpers\UrlHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\Caching\CacheProviderBase.cs" />
+    <Compile Include="Providers\Caching\CacheProviderCollection.cs" />
+    <Compile Include="Providers\Caching\CacheProviderManager.cs" />
+    <Compile Include="Providers\Caching\WebCacheProvider.cs" />
+    <Compile Include="Providers\Logging\ILogEntry.cs" />
+    <Compile Include="Providers\Logging\LoggingProviderBase.cs" />
+    <Compile Include="Providers\Logging\LoggingProviderCollection.cs" />
+    <Compile Include="Providers\Logging\LoggingProviderManager.cs" />
+    <Compile Include="Providers\Mail\IMailServiceProvider.cs" />
+    <Compile Include="Providers\Mail\MailServiceProviderBase.cs" />
+    <Compile Include="Providers\Mail\MailServiceProviderCollection.cs" />
+    <Compile Include="Providers\Mail\MailServiceProviderManager.cs" />
+    <Compile Include="Providers\Mail\SMTPMailServiceProvider.cs" />
+    <Compile Include="Providers\Membership\MultiTenantMembershipProvider.cs" />
+    <Compile Include="Providers\Membership\MultiTenantProfileProvider.cs" />
+    <Compile Include="Providers\Membership\MultiTenantRoleProvider.cs" />
+    <Compile Include="Providers\Navigation\DatabaseNavigationProvider.cs" />
+    <Compile Include="Providers\Navigation\NavigationProviderBase.cs" />
+    <Compile Include="Providers\Navigation\NavigationProviderCollection.cs" />
+    <Compile Include="Providers\Navigation\NavigationProviderManager.cs" />
+    <Compile Include="Providers\NHibernateSession\IUnitOfWork.cs" />
+    <Compile Include="Providers\NHibernateSession\NHibernateRepositoryModule.cs" />
+    <Compile Include="Providers\NHibernateSession\NHibernateSessionProvider.cs" />
+    <Compile Include="Providers\NHibernateSession\UnitOfWork.cs" />
+    <Compile Include="Providers\Portal\MultiTenantPortalProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Providers\Portal\PortalProviderBase.cs" />
+    <Compile Include="Providers\Portal\PortalProviderCollection.cs" />
+    <Compile Include="Providers\Portal\PortalProviderManager.cs" />
+    <Compile Include="Providers\ProviderConfiguration.cs" />
+    <Compile Include="Repository\Entities\ConfigurationRepository.cs" />
+    <Compile Include="Repository\Entities\PagePermissionRepository.cs" />
+    <Compile Include="Repository\Entities\PageRepository.cs" />
+    <Compile Include="Repository\Entities\PortalRepository.cs" />
+    <Compile Include="Repository\IKeyedRepository.cs" />
+    <Compile Include="Repository\IReadOnlyRepository.cs" />
+    <Compile Include="Repository\Entities\RoleRepository.cs" />
+    <Compile Include="Repository\Entities\UserRepository.cs" />
+    <Compile Include="Repository\Repository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Providers\Membership\MembershipClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lightweight.Model\Lightweight.Model.csproj">
+      <Project>{36528404-ec81-4a89-b6ad-0dcaf2337d55}</Project>
+      <Name>Lightweight.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

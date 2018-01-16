@@ -1,0 +1,12 @@
+﻿@model Lightweight.Web.Models.PageModel
+
+@foreach (Lightweight.Web.Models.PageWidgetModel widget in Model.Widgets.OrderBy(w => w.Row).ThenBy(w => w.Col))
+{
+    @Html.Partial("_RenderWidget", widget)
+}
+
+@using (var context = Html.BeginScriptContext())
+{
+    context.AddScriptFile("~/Scripts/lightweight/scrollable.js");
+    context.AddScriptFile("~/Scripts/lightweight/page/page-render.js");
+}

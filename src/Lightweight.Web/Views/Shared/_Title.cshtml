@@ -1,0 +1,10 @@
+﻿<h1 class="col-sm-12">
+    @ViewBag.Title
+    @if (ViewBag.SubTitle != null && User.Identity.IsAuthenticated)
+    {
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            @ViewBag.SubTitle
+        </small>
+    }
+</h1>

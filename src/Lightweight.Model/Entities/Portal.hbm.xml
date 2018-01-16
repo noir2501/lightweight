@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Lightweight.Model.Entities" assembly="Lightweight.Model" auto-import="false">
+
+  <class name="Portal" table="Portal">
+
+    <id name="Id" column="TenantUID">
+      <generator class="foreign">
+        <param name="property">
+          Tenant
+        </param>
+      </generator>
+    </id>
+
+    <property name="Title"/>
+    <property name="Url" />
+
+    <one-to-one name="Tenant" constrained="true" foreign-key="none" class="Tenant"/>
+
+    <bag  name="Aliases" inverse="true">
+      <key column="TenantUID"/>
+      <one-to-many class="PortalAlias"/>
+    </bag>
+
+  </class>
+
+</hibernate-mapping>

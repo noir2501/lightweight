@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Tenant] (
+    [TenantUID] UNIQUEIDENTIFIER CONSTRAINT [DF_Tenant_TenantUID] DEFAULT (newid()) NOT NULL,
+    [Name]      NVARCHAR (50)    NOT NULL,
+    CONSTRAINT [PK_Tenant] PRIMARY KEY CLUSTERED ([TenantUID] ASC)
+);
+

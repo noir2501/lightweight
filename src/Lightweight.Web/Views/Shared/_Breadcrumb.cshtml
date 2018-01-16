@@ -1,0 +1,18 @@
+﻿<script type="text/javascript">
+    try { ace.settings.check('breadcrumbs', 'fixed') } catch (e) { }
+</script>
+
+@{
+    var data = @Url.RequestContext.RouteData;
+    var route = data.DataTokens.SingleOrDefault(kvp => kvp.Key == "RouteName").Value;
+    var controller = data.Values.Single(kvp => kvp.Key == "controller").Value;
+    var action = data.Values.Single(kvp => kvp.Key == "action").Value;
+}
+
+<ul class="breadcrumb">
+    <li>
+       @route
+    </li>
+    <li class="active">@controller</li>
+    <li class="active">@action</li>
+</ul>

@@ -1,0 +1,25 @@
+﻿@{
+
+    List<Lightweight.Web.Models.PageModel> navigation;
+    string[] roles = null;
+
+    if (User.Identity.IsAuthenticated)
+    {
+        navigation = Lightweight.Web.Infrastructure.NavigationModelHelper.GetUserNavigationModels(User.Identity.Name);
+        roles = Roles.GetRolesForUser();
+    }
+    else
+    {
+        navigation = Lightweight.Web.Infrastructure.NavigationModelHelper.GetRoleNavigationModel("Guest");
+        roles = new string[] { "Guest" };
+    }
+
+    var slug = Url.RequestContext.RouteData.Values.ContainsKey("slug") ? Url.RequestContext.RouteData.GetRequiredString("slug") : string.Empty;
+
+    if (roles.Contains("Administrator"))
+    {
+        navigation = Lightweight.Web.Infrastructure.NavigationModelHelper.GetAdminNavigation(navigation);
+    }
+
+    @Navigation.RenderNavigation(navigation, slug, roles, Url);
+}

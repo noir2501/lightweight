@@ -1,0 +1,62 @@
+﻿@model Lightweight.Web.Models.PageModel
+
+<div class="row">
+    <div class="col-xs-12 form-inline">
+        <div class="form-group">
+            <button id="add-widget" class="btn btn-white btn-info btn-bold">
+                <i class="ace-icon fa fa-plus bigger-120 green"></i>
+                Add widget
+            </button>
+            <select id="modules-list" class="form-control" data-rel="popover" data-trigger="hover" data-placement="right" data-content="The type of the widget." title="" data-original-title="Type"></select>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div id="page-layout" class="col-xs-12">
+        <div>
+            <div id="layout-container" class="gridster">
+                <!-- WIDGETS -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="module-template" type="text/template">
+    <option value="<%= Id %>"><%= Name %></option>
+</script>
+
+<script id="layout-widget-container-template" type="text/template">
+    @Html.Partial("_LayoutWidgetContainer")
+</script>
+
+<script id="layout-widget-template" type="text/template">
+    @Html.Partial("_LayoutWidget")
+</script>
+
+<!-- RENDER MODULE EDITOR TEMPLATES -->
+@{
+    List<Lightweight.Web.Models.ModuleModel> modules = ViewBag.modules;
+    foreach (var module in modules)
+    {
+        <script id="module-editor-@module.Id-template" type="text/template">
+            @Html.Action("Editor", @module.Name)
+        </script>
+    }
+}
+
+<!-- INCLUDE PAGE SCRIPTS -->
+@using (var context = Html.BeginScriptContext())
+{
+    context.AddScriptFile("~/Scripts/bootstrap-editable.min.js");
+    context.AddScriptFile("~/Scripts/lightweight/editable.js");
+    context.AddScriptFile("~/Scripts/jquery.gridster.js");
+    context.AddScriptFile("~/Scripts/underscore.min.js");
+    context.AddScriptFile("~/Scripts/backbone.min.js");
+
+    context.AddScriptFile("~/Scripts/lightweight/page/page-layout-models.js");
+    context.AddScriptFile("~/Scripts/lightweight/page/page-layout-views.js");
+    context.AddScriptFile("~/Scripts/lightweight/page/page-layout-router.js");
+
+    // script for router initialization
+    context.AddScriptBlock(string.Format("$(function () {{ window.router = new PageLayoutRouter(); window.router.pageId = '{0}'; Backbone.history.start(); }});", @Model.Id));
+}

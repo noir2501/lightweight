@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="Lightweight.Model.Entities" assembly="Lightweight.Model" auto-import="false">
+
+  <class name="PortalAlias" table="PortalAlias">
+    <id name="Id" column="PortalAliasId">
+      <generator class="identity"></generator>
+    </id>
+
+    <property name="Url" />
+    <many-to-one name="Portal" column="TenantUID" />
+
+  </class>
+
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+﻿.page-header {
+    padding-bottom: 35px;
+}
+
+[class*=widget-color-] > .widget-header > .widget-toolbar > .nav-tabs > li > a {
+    border-color: transparent;
+    background-color: transparent;
+    color: black;
+    margin-right: 1px;
+}
+
+
+/*.gridster .gs-w {
+    background: #DDD;
+    cursor: pointer;
+}*/
+
+.gridster .player {
+    background: red;
+    /* #BBB;*/
+}
+
+
+.gridster .preview-holder {
+    border: none !important;
+    background: red !important;
+}
+
+.widget-body .md-header {
+    background: #5090c1;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.widget-body .md-preview {
+    overflow: auto;
+}
+
+.widget-body .md-preview {
+    min-height: 178px;
+}
